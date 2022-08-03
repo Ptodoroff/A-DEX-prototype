@@ -1,8 +1,9 @@
 pragma solidity  ^0.8.0;
 pragma abicoder v2;
+import "./Wallet.sol"; 
 
 
-contract Wallet {
+contract Dex  is Wallet {
     
     enum Side {
         BUY,
@@ -20,11 +21,13 @@ struct Order {
     uint price;
 }
 
- mapping (bytes32 => mapping(Side=>Order[])) orderBook; /* we create a mapping with the orderbook for every coin. the mapping takes the ticker of the coin, then if the order is buy or seel */
+ mapping (bytes32 => mapping(uint=>Order[])) orderBook; /* we create a mapping with the orderbook for every coin. the mapping takes the ticker of the coin, then if the order is buy or seel */
 
 function getOrderBook (bytes32 ticker, Side side) view public returns (Order[] memory) {
-return orderBook[ticker][Side(side)];
+return orderBook[ticker][uint(side)];
 
 }
+
+
 
 }

@@ -1,14 +1,14 @@
 const Dogelon = artifacts.require("Dogelon");
-const Wallet = artifacts.require ("Wallet");
+const Dex = artifacts.require ("Dex");
 
 module.exports =async  function (deployer, network, accounts) {                         /* apart form deployer, we also include network and more importantly accounts in order to be able to make use of accounts[0] when declarin the elonbalance variable  */
  await  deployer.deploy(Dogelon);
-  let wallet = await Wallet.deployed()
+  let dex = await Dex.deployed()
   let elon = await Dogelon.deployed()
-  await elon.approve(wallet.address,300)
-  await wallet.addToken(web3.utils.fromUtf8("ELON"),elon.address)
-  await wallet.deposit(100, web3.utils.fromUtf8("ELON"))
-  let elonBalance = await wallet.balances(accounts[0],web3.utils.fromUtf8("ELON"));
+  await elon.approve(dex.address,300)
+  await dex.addToken(web3.utils.fromUtf8("ELON"),elon.address)
+  await dex.deposit(100, web3.utils.fromUtf8("ELON"))
+  let elonBalance = await dex.balances(accounts[0],web3.utils.fromUtf8("ELON"));
   console.log(elonBalance);
 };
 
