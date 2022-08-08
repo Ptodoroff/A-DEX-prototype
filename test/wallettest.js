@@ -1,7 +1,7 @@
 const Dex = artifacts.require("Dex");
 const Dogelon = artifacts.require("Dogelon");
 const truffleAssert = require('truffle-assertions');
-contract ("Dex",accounts => {
+contract.skip ("Dex",accounts => {
     it ("shuld only be possible for owner to add tokens", async () =>{
 
 

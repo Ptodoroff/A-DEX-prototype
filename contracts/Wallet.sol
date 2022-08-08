@@ -24,6 +24,10 @@ contract Wallet is Ownable{
 
     }
 
+        function depositEth() payable external {
+        balances[msg.sender][bytes32("ETH")] = balances[msg.sender][bytes32("ETH")].add(msg.value);
+    }
+
 
     function deposit (uint amount, bytes32 ticker) external payable {
         require(tokenMapping[ticker].tokenAddress!=address(0));
